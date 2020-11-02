@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matrix Demo</title>
+    <link rel="stylesheet" href="node_modules/normalize.css/normalize.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .trans_skew {
+        transform: skew(45deg);
+      }
+      .trans_skew_x {
+        transform: skewX(45deg);
+      }
+      .trans_skew_y {
+        transform: skewY(45deg);
+      }
+
+      .trans_scale {
+        transform: scale(2);
+      }
+      .trans_scale_x {
+        transform: scaleX(2);
+      }
+      .trans_scale_y {
+        transform: scaleY(2);
+      }
+
+      .trans_rotate {
+        transform: rotate(45deg);
+      }
+
+      .trans_translate {
+        transform: translate(10px, 10px);
+      }
+      .trans_translate_X {
+        transform: translateX(10px);
+      }
+      .trans_translate_Y {
+        transform: translateY(10px);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>transform 基础</h1>
+    <section>
+      <div class="box-container">
+        <h2>initial 50x50</h2>
+        <div class="box" data-clazz="">initial</div>
+      </div>
+      <div class="box-container">
+        <h2>skew</h2>
+        <div class="box" data-clazz="trans_skew">skew</div>
+        <div class="box" data-clazz="trans_skew_x">skewX</div>
+        <div class="box" data-clazz="trans_skew_y">skewY</div>
+      </div>
+      <div class="box-container">
+        <h2>scale</h2>
+        <div class="box" data-clazz="trans_scale">scale</div>
+        <div class="box" data-clazz="trans_scale_x">scaleX</div>
+        <div class="box" data-clazz="trans_scale_y">scaleY</div>
+      </div>
+      <div class="box-container">
+        <h2>rotate</h2>
+        <div class="box" data-clazz="trans_rotate">rotate</div>
+      </div>
+      <div class="box-container">
+        <h2>translate</h2>
+        <div class="box" data-clazz="trans_translate">translate</div>
+        <div class="box" data-clazz="trans_translate_X">translateX</div>
+        <div class="box" data-clazz="trans_translate_Y">translateY</div>
+      </div>
+    </section>
+    <h1>matrix 2D</h1>
+    <p>matrix 2d是3x3矩阵，最后一行三个参数为0,0,1，故方法有六个参数。</p>
+    <pre>transform: matrix(a,b,c,d,e,f);</pre>
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+      "
+    >
+      <table
+        border="1"
+        cellpadding="0"
+        cellspacing="0"
+        style="display: inline-block"
+      >
+        <tr>
+          <td>a</td>
+          <td>c</td>
+          <td>e</td>
+        </tr>
+        <tr>
+          <td>b</td>
+          <td>d</td>
+          <td>f</td>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+        </tr>
+      </table>
+      X
+      <table
+        border="1"
+        cellpadding="0"
+        cellspacing="0"
+        style="display: inline-block"
+      >
+        <tr>
+          <td>x</td>
+        </tr>
+        <tr>
+          <td>y</td>
+        </tr>
+        <tr>
+          <td>z==1</td>
+        </tr>
+      </table>
+      =
+      <table
+        border="1"
+        cellpadding="0"
+        cellspacing="0"
+        style="display: inline-block"
+      >
+        <tr>
+          <td>ax+cy+e</td>
+        </tr>
+        <tr>
+          <td>bx+dy+f</td>
+        </tr>
+        <tr>
+          <td>0+0+1</td>
+        </tr>
+      </table>
+      =
+      <table
+        border="1"
+        cellpadding="0"
+        cellspacing="0"
+        style="display: inline-block"
+      >
+        <tr>
+          <td>参数计算后，相对于transform-orign的中心点x轴位置</td>
+        </tr>
+        <tr>
+          <td>参数计算后，相对于transform-orign的中心点y轴位置</td>
+        </tr>
+        <tr>
+          <td>1，由于是2d，所以z轴不变</td>
+        </tr>
+      </table>
+    </div>
+    <section>
+      <div class="box-container">
+        <style>
+          .trans_matrix_translate {
+            transform: matrix(1, 0, 0, 1, 30, 30);
+          }
+          .trans_translate30 {
+            transform: translate(30px, 30px);
+          }
+        </style>
+        <div>
+          <h2>matrix实现translate</h2>
+          <pre>matrix(1, 0, 0, 1, 30, 30);</pre>
+          <pre>translate(30px, 30px)</pre>
+        </div>
+        <div class="box" data-clazz="trans_matrix_translate">matrix</div>
+        <div class="box" data-clazz="trans_translate30">translate30</div>
+      </div>
+      <div class="box-container">
+        <style>
+          .trans_matrix_scale {
+            transform: matrix(2, 0, 0, 2, 0, 0);
+          }
+          .trans_scale2 {
+            transform: scale(2);
+          }
+        </style>
+        <div>
+          <h2>matrix实现scale</h2>
+          <pre>matrix(2, 0, 0, 2, 0, 0)</pre>
+          <pre>scale(2)</pre>
+        </div>
+        <div class="box" data-clazz="trans_matrix_scale">matrix</div>
+        <div class="box" data-clazz="trans_scale2">scale2</div>
+      </div>
+      <div class="box-container">
+        <style>
+          /* 旋转45° */
+          .trans_matrix_rotate {
+            transform: matrix(
+              0.7071067811865476,
+              0.7071067811865475,
+              -0.7071067811865475,
+              0.7071067811865476,
+              0,
+              0
+            );
+          }
+          .trans_rotate45 {
+            transform: rotate(45deg);
+          }
+        </style>
+        <div>
+          <h2>matrix实现rotate</h2>
+          <pre>matrix(cosθ, sinθ, -sinθ, cosθ, 0, 0)</pre>
+          <pre>rotate(θ)</pre>
+        </div>
+        <div class="box" data-clazz="trans_matrix_rotate">matrix</div>
+        <div class="box" data-clazz="trans_rotate45">rotate45</div>
+      </div>
+      <div class="box-container">
+        <style>
+          .trans_matrix_skew {
+            transform: matrix(1, 0, 1, 1, 0, 0);
+          }
+          .trans_skew_x_45 {
+            transform: skew(45deg);
+          }
+          .trans_matrix_skew_y {
+            transform: matrix(1, 1, 0, 1, 0, 0);
+          }
+          .trans_skew_y_45 {
+            transform: skewY(45deg);
+          }
+        </style>
+        <div>
+          <h2>matrix实现skew</h2>
+          <pre>matrix(1, tan(0y), tan(0x), 1, 0, 0</pre>
+          <p>θx表示x轴倾斜的角度，θy表示y轴，两者并无关联，并不是相乘关系。</p>
+          <pre>skew(x, y)</pre>
+        </div>
+        <div class="box" data-clazz="trans_matrix_skew">martix x</div>
+        <div class="box" data-clazz="trans_skew_x_45">skew x</div>
+        <div class="box" data-clazz="trans_matrix_skew_y">martix y</div>
+        <div class="box" data-clazz="trans_skew_y_45">skew y</div>
+      </div>
+    </section>
+    <script>
+      const boxes = document.querySelectorAll(".box");
+      boxes.forEach(function (box) {
+        box.onclick = function () {
+          if (!!this.dataset.clazz) {
+            if (this.classList.contains(this.dataset.clazz)) {
+              this.classList.remove(this.dataset.clazz);
+            } else {
+              this.classList.add(this.dataset.clazz);
+            }
+          }
+        };
+      });
+    </script>
+  </body>
+</html>
